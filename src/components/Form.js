@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { CategoriesContext } from '../context/CategoriesContext';
+import { RecipesContext } from '../context/RecipesContext';
 
 const Form = () => {
 
@@ -10,6 +11,7 @@ const Form = () => {
     });
 
     const { categories } = useContext(CategoriesContext)
+    const { searchRecipes } = useContext(RecipesContext);
 
     //function for read the contents
     const getDataRecipes = e => {
@@ -23,6 +25,10 @@ const Form = () => {
     return ( 
         <form 
             className="col-12"
+            onSubmit={e => {
+                e.preventDefault();
+                searchRecipes(search)
+            }}
         >
             <fieldset className="text-center">
                 <legend>Search drinks for category or ingredient</legend>

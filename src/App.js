@@ -1,21 +1,23 @@
-import React, { Fragment } from 'react';
-import Header from './components/Header';
-import Form from './components/Form';
+import React, { Fragment } from "react";
+import Header from "./components/Header";
+import Form from "./components/Form";
 
-import CategoriesProvider from './context/CategoriesContext';
+import CategoriesProvider from "./context/CategoriesContext";
+import RecipesProvider from "./context/RecipesContext";
 
 function App() {
   return (
-
-      <CategoriesProvider>
+    <CategoriesProvider>
+      <RecipesProvider>
         <Header />
 
         <div className="container mt-5">
           <div className="row">
-              <Form />
+            <Form />
           </div>
         </div>
-      </CategoriesProvider>
+      </RecipesProvider>
+    </CategoriesProvider>
   );
 }
 
