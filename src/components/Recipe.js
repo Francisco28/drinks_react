@@ -1,7 +1,11 @@
-import React from 'react';
-
+import React, { useContext } from 'react';
+import { ModalContext } from '../context/ModalContext';
 
 const Recipe = ({recipe}) => {
+
+    //extract the values of the content
+    const { saveIdRecipe } = useContext(ModalContext);
+
     return ( 
         <div className="col-md-4 mb-3">
             <div className="card">
@@ -13,6 +17,9 @@ const Recipe = ({recipe}) => {
                     <button
                         type="button"
                         className="btn btn-block btn-primary"
+                        onClick={() => {
+                            saveIdRecipe(recipe.idDrink)}
+                        }
                     >
                         View Recipe
                     </button>
