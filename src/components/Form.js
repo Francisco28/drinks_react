@@ -31,6 +31,14 @@ const Form = () => {
                         name="category"
                     >
                         <option value="">--Select Category--</option>
+                        {categories.map(category => (
+                            <option 
+                                key={category.strCategory}
+                                value={category.strCategory}
+                            >
+                                {category.strCategory}
+                            </option>
+                        ))}
                     </select>
                 </div>
 
