@@ -2,11 +2,12 @@ import React, { Fragment } from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 
+import CategoriesProvider from './context/CategoriesContext';
 
 function App() {
   return (
 
-      <Fragment>
+      <CategoriesProvider>
         <Header />
 
         <div className="container mt-5">
@@ -14,7 +15,7 @@ function App() {
               <Form />
           </div>
         </div>
-      </Fragment>
+      </CategoriesProvider>
   );
 }
 
