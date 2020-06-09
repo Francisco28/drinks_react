@@ -3,9 +3,9 @@ import { CategoriesContext } from '../context/CategoriesContext';
 
 const Form = () => {
 
-    const { hello } = useContext(CategoriesContext)
+    const { categories } = useContext(CategoriesContext)
 
-    alert(hello);
+    console.log(categories);   
 
     return ( 
         <form 
