@@ -18,7 +18,7 @@ function getModalStyle() {
 const useStyles = makeStyles(theme => ({
     paper: {
       position: 'absolute',
-      width: 600,
+      width: 450,
       backgroundColor: theme.palette.background.paper,
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
@@ -45,7 +45,20 @@ const Recipe = ({recipe}) => {
     }
 
     //extract the values of the content
-    const { saveIdRecipe } = useContext(ModalContext);
+    const { inforecipe, saveIdRecipe, saveRecipe } = useContext(ModalContext);
+
+    //show and formate the ingredients
+    const showIngredients = inforecipe => {
+        let ingredients = [];
+        for(let i = 1; i < 16; i++) {
+            if(inforecipe[`strIngredient${i}`]) {
+                ingredients.push(
+                <li>{ inforecipe[`strIngredient${i}`] } {inforecipe[`strMeasure${i}`]}</li>
+                )
+            }
+        }
+        return ingredients;
+    }
 
     return ( 
         <div className="col-md-4 mb-3">
@@ -60,6 +73,7 @@ const Recipe = ({recipe}) => {
                         className="btn btn-block btn-primary"
                         onClick={() => {
                             saveIdRecipe(recipe.idDrink);
+                            saveRecipe({});
                             handleOpen();
                         }}
                     >
@@ -74,7 +88,18 @@ const Recipe = ({recipe}) => {
                         }}
                     >
                         <div style={modalStyle} className={classes.paper}>
-                            <h1>From Modal</h1>
+                            <h2>{inforecipe.strDrink}</h2>
+                            <h3 className="mt-4">Instructions</h3>
+                            <p>
+                                {inforecipe.strInstructions}
+                            </p>
+
+                            <img className="img-fluid my-4" src={inforecipe.strDrinkThumb} alt="" />
+
+                            <h3>Ingredients and amounts</h3>
+                            <ul>
+                                { showIngredients(inforecipe) }
+                            </ul>
                         </div>
                     </Modal>
                 </div> 
